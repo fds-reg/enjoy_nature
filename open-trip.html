@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Trip | Portofolio Traveling & Olahraga</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .btn-order-now {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-order-now img {
+      display: block;
+    }
+    .btn-order-now span {
+      line-height: 1;
+    }
+    .trip-zoom-hint svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--forest);
+      fill: none;
+      stroke-width: 2;
+      vertical-align: -2px;
+      margin-right: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo Jejak" />Enjoy Nature.</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="about.html">Tentang</a></li>
+          <li><a href="open-trip.html" class="active">Open Trip</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="gallery.html">Galeri</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="contact.html">Kontak</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Buka menu">&#9776;</button>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-title fade-in">
+      <h2>Open Trip</h2>
+      <p>Klik foto untuk melihat detail trip dan fasilitas lengkap</p>
+    </div>
+
+    <!-- ===================================================
+         DAFTAR OPEN TRIP
+         Untuk menambah trip baru, COPY 1 blok <div class="trip-card">...</div>
+         di bawah ini, lalu PASTE sebelum tag penutup </div class="trip-grid">
+         Ganti foto, judul, harga, dan fasilitas sesuai trip yang baru.
+    ==================================================== -->
+    <div class="trip-grid fade-in">
+
+      <!-- TRIP 1 -->
+      <div class="trip-card">
+        <div class="trip-card-photo">
+          <img src="assets/images/open1.png" alt="Open Trip Rinjani" onerror="this.src='assets/images/open1.png'" />
+          <span class="trip-zoom-hint">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Lihat detail
+          </span>
+          <div class="trip-title-overlay">
+            <h3>Open Trip Sibayak</h3>
+            <p>MT. Sibayak 2122</p>
+          </div>
+        </div>
+        <div class="trip-card-body">
+          <div class="trip-price-badge">
+            Start from
+            <span>Rp 200.000</span>
+            potongan 5% untuk 3 orang tercepat
+          </div>
+          <h4>Fasilitas</h4>
+          <ul class="trip-facilities">
+            <li>Transportasi</li>
+            <li>Tenda dan porter</li>
+            <li>Makan selama pendakian</li>
+            <li>Registrasi</li>
+            <li>Dokumentasi</li>
+            <li>P3K</li>
+          </ul>
+          <div class="trip-order-buttons">
+            <button type="button" class="btn-order-now">
+              <img src="assets/images/keranjang_order.png" alt="Order" style="width:22px;height:22px;border-radius:50%;flex-shrink:0;" />
+              <span>Order Now</span>
+            </button>
+            <div class="order-dropdown-menu">
+              <a href="https://wa.me/6285133922544?text=Halo%20admin%2C%20saya%20mau%20order%20open%20trip" target="_blank">Admin 1</a>
+              <a href="https://wa.me/6281368027112?text=Halo%20admin%2C%20saya%20mau%20order%20open%20trip" target="_blank">Admin 2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRIP 2 -->
+      <div class="trip-card">
+        <div class="trip-card-photo">
+          <img src="assets/images/open2.png" alt="Open Trip Pantai Selatan" onerror="this.src='assets/images/open2.png'" />
+          <span class="trip-zoom-hint">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Lihat detail
+          </span>
+          <div class="trip-title-overlay">
+            <h3>Open Trip Sibuatan</h3>
+            <p>MT Sibuatan 2457</p>
+          </div>
+        </div>
+        <div class="trip-card-body">
+          <div class="trip-price-badge">
+            Start from Mepo Medan
+            <span>400.000</span>
+            Min 3 orang
+          </div>
+          <h4>Fasilitas</h4>
+          <ul class="trip-facilities">
+            <li>Transportasi PP</li>
+            <li>Guide</li>
+            <li>Tenda</li>
+            <li>Makan Selama pendakian</li>
+            <li>Obat Pribadi</li>
+            <li>Sleepingbag</li>
+            <li>Jas Hujan</li>
+            <li>Tracking Pole</li>
+            <li>Jajanan Pribadi</li>
+          </ul>
+          <div class="trip-order-buttons">
+            <button type="button" class="btn-order-now">
+              <img src="assets/images/keranjang_order.png" alt="Order" style="width:22px;height:22px;border-radius:50%;flex-shrink:0;" />
+              <span>Order Now</span>
+            </button>
+            <div class="order-dropdown-menu">
+              <a href="https://wa.me/6285133922544?text=Halo%20admin%2C%20saya%20mau%20order%20open%20trip" target="_blank">Admin 1</a>
+              <a href="https://wa.me/6281368027112?text=Halo%20admin%2C%20saya%20mau%20order%20open%20trip" target="_blank">Admin 2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRIP 3 -->
+      <div class="trip-card">
+        <div class="trip-card-photo">
+          <img src="assets/images/open3.png" alt="Open Trip Hanoi Explore" onerror="this.src='assets/images/open3.png'" />
+          <span class="trip-zoom-hint">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Lihat detail
+          </span>
+          <div class="trip-title-overlay">
+            <h3>Open Trip Lauberte</h3>
+            <p>Lauberte</p>
+          </div>
+        </div>
+        <div class="trip-card-body">
+          <div class="trip-price-badge">
+            Start from
+            <span>Rp 50.000</span>
+            Untuk Per orangan
+          </div>
+          <h4>Fasilitas</h4>
+          <ul class="trip-facilities">
+            <li>Dokumentasi Foto</li>
+            <li>Dokumentasi Drone</li>
+            <li>Tempat Singgah</li>
+            <li>Kamar Mandi</li>
+            <li>Free Wifi</li>
+          </ul>
+          <div class="trip-order-buttons">
+            <button type="button" class="btn-order-now">
+              <img src="assets/images/keranjang_order.png" alt="Order" style="width:22px;height:22px;border-radius:50%;flex-shrink:0;" />
+              <span>Order Now</span>
+            </button>
+            <div class="order-dropdown-menu">
+              <a href="https://wa.me/6285133922544?text=Halo%20admin%2C%20saya%20mau%20order%20open%20trip" target="_blank">Admin 1</a>
+              <a href="https://wa.me/6281368027112?text=Halo%20admin%2C%20saya%20mau%20order%20open%20trip" target="_blank">Admin 2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 👇 TAMBAHKAN TRIP BARU DI SINI, copy salah satu blok <div class="trip-card"> di atas -->
+
+    </div>
+  </section>
+
+  <!-- MODAL DETAIL TRIP (otomatis terisi lewat JS saat foto diklik) -->
+  <div class="trip-modal-overlay" id="trip-modal-overlay">
+    <div class="trip-modal">
+      <button class="trip-modal-close" id="trip-modal-close" aria-label="Tutup">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="5" y1="5" x2="19" y2="19" stroke-linecap="round"/>
+          <line x1="19" y1="5" x2="5" y2="19" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <img src="" alt="" id="trip-modal-photo" />
+      <div class="trip-modal-body">
+        <h3 id="trip-modal-title"></h3>
+        <p class="trip-modal-subtitle" id="trip-modal-subtitle"></p>
+        <div class="trip-modal-price" id="trip-modal-price"></div>
+        <h4>Fasilitas</h4>
+        <ul class="trip-facilities" id="trip-modal-facilities"></ul>
+        <div class="trip-order-buttons" id="trip-modal-contact"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Jejak. Semua hak dilindungi.</p>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">Strava</a>
+      <a href="#">YouTube</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

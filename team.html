@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team | Enjoy Nature</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background-color: var(--cream);
+      border: 1px solid var(--sand);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--t-med) var(--ease-spring),
+                  box-shadow var(--t-med) var(--ease-out),
+                  border-color var(--t-med);
+      text-align: center;
+      position: relative;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(232, 168, 32, 0.3);
+    }
+
+    .team-card .team-photo-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      transition: transform var(--t-slow) var(--ease-out);
+    }
+
+    .team-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .team-view-hint {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26, 46, 26, 0.15), rgba(26, 46, 26, 0.7));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity var(--t-med) var(--ease-out),
+                  transform var(--t-med) var(--ease-spring);
+    }
+
+    .team-card:hover .team-view-hint {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .team-view-hint svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold-light);
+      fill: none;
+      stroke-width: 2;
+      margin-right: 0.35rem;
+      vertical-align: -3px;
+    }
+
+    .team-card-info {
+      padding: 0.8rem;
+    }
+
+    .team-card-info h4 {
+      font-size: 0.95rem;
+      color: var(--forest);
+      margin-bottom: 0.2rem;
+    }
+
+    .team-card-info span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ====== MODAL BIODATA ====== */
+    .team-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(10, 18, 10, 0.72);
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 1.5rem;
+      opacity: 0;
+      backdrop-filter: blur(6px);
+      transition: opacity var(--t-med) var(--ease-out);
+    }
+
+    .team-modal-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .team-modal {
+      background-color: var(--cream);
+      border-radius: var(--radius-xl);
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      transform: scale(0.88) translateY(20px);
+      transition: transform var(--t-med) var(--ease-spring);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .team-modal-overlay.open .team-modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .team-modal-cover {
+      background: linear-gradient(160deg, var(--forest-mid), var(--forest));
+      height: 90px;
+    }
+
+    .team-modal-photo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: -55px;
+    }
+
+    .team-modal img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--cream);
+      box-shadow: var(--shadow-md);
+      background-color: var(--cream);
+    }
+
+    .team-modal-name-block {
+      text-align: center;
+      padding: 0.8rem 1.6rem 0;
+    }
+
+    .team-modal-name-block h3 {
+      color: var(--forest);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-modal-role-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--forest);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+    }
+
+    .team-modal-body {
+      padding: 1.2rem 1.6rem 1.8rem;
+      text-align: left;
+    }
+
+    .biodata-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .biodata-row:last-child {
+      border-bottom: none;
+    }
+
+    .biodata-row .biodata-icon {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      border-radius: 9px;
+      background: rgba(232, 168, 32, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .biodata-row .biodata-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--clay);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .biodata-row .biodata-text {
+      flex: 1;
+    }
+
+    .biodata-row .biodata-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 0.1rem;
+    }
+
+    .biodata-row .biodata-value {
+      font-size: 0.92rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .team-modal-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      background-color: rgba(255, 255, 255, 0.92);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      transition: background-color var(--t-fast), transform var(--t-fast);
+      z-index: 5;
+    }
+
+    .team-modal-close svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--clay);
+      stroke-width: 2.4;
+    }
+
+    .team-modal-close:hover {
+      background-color: var(--clay);
+      transform: scale(1.08) rotate(90deg);
+    }
+
+    .team-modal-close:hover svg {
+      stroke: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo Jejak" />Enjoy Nature.</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="about.html">Tentang</a></li>
+          <li><a href="open-trip.html">Open Trip</a></li>
+          <li><a href="team.html" class="active">Team</a></li>
+          <li><a href="gallery.html">Galeri</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="contact.html">Kontak</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Buka menu">&#9776;</button>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-title fade-in">
+      <h2>Team Kami</h2>
+      <p>Klik foto untuk melihat biodata lengkap masing-masing anggota</p>
+    </div>
+
+    <!-- ============================================================
+         CARA TAMBAH ANGGOTA BARU:
+         Copy satu blok <div class="team-card"> ... </div> di bawah,
+         paste sebelum komentar penutup, lalu ganti semua data-* :
+           - data-photo      → path foto anggota
+           - data-name       → nama lengkap
+           - data-role       → ditetapkan sebagai (jabatan/peran)
+           - data-birthdate  → tanggal lahir
+           - data-phone      → nomor HP
+           - data-gender     → jenis kelamin
+           - data-hobby      → hobi
+           - <h4> dan <span> → tampil di kartu (samakan dgn data-name & data-role)
+    =============================================================== -->
+
+    <div class="team-grid fade-in">
+
+      <!-- ANGGOTA 1 -->
+      <div class="team-card"
+           data-photo="assets/images/team1.png"
+           data-name="Fransiskus"
+           data-role="Trip Leader & Pelari"
+           data-birthdate="12 Mei 1998"
+           data-phone="0822-7618-2557"
+           data-gender="Laki-laki"
+           data-hobby="Hiking, lari half marathon">
+        <div class="team-photo-wrap">
+          <img src="assets/images/team1.png" alt="Fransiskus" onerror="this.src='assets/images/team1.png'" />
+          <div class="team-view-hint">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+            Lihat Biodata
+          </div>
+        </div>
+        <div class="team-card-info">
+          <h4>Fransiskus</h4>
+          <span>Trip Leader & Pelari</span>
+        </div>
+      </div>
+
+      <!-- ANGGOTA 2 -->
+      <div class="team-card"
+           data-photo="assets/images/team1.png"
+           data-name="Rara Wulandari"
+           data-role="Fotografer Perjalanan"
+           data-birthdate="3 September 2000"
+           data-phone="0813-6802-7112"
+           data-gender="Perempuan"
+           data-hobby="Fotografi, menyelam">
+        <div class="team-photo-wrap">
+          <img src="assets/images/team1.png" alt="Rara Wulandari" onerror="this.src='assets/images/team1.png'" />
+          <div class="team-view-hint">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+            Lihat Biodata
+          </div>
+        </div>
+        <div class="team-card-info">
+          <h4>Rara Wulandari</h4>
+          <span>Fotografer Perjalanan</span>
+        </div>
+      </div>
+
+      <!-- ANGGOTA 3 -->
+      <div class="team-card"
+           data-photo="assets/images/team1.png"
+           data-name="Bima Saputra"
+           data-role="Logistik & Surfing Coach"
+           data-birthdate="20 Januari 1999"
+           data-phone="0851-3392-2544"
+           data-gender="Laki-laki"
+           data-hobby="Surfing, mengelola perlengkapan trip">
+        <div class="team-photo-wrap">
+          <img src="assets/images/team1.png" alt="Bima Saputra" onerror="this.src='assets/images/team1.png'" />
+          <div class="team-view-hint">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+            Lihat Biodata
+          </div>
+        </div>
+        <div class="team-card-info">
+          <h4>Bima Saputra</h4>
+          <span>Logistik & Surfing Coach</span>
+        </div>
+      </div>
+
+      <!-- ANGGOTA 4 -->
+      <div class="team-card"
+           data-photo="assets/images/team1.png"
+           data-name="Citra Maharani"
+           data-role="Koordinator Komunitas"
+           data-birthdate="15 Juli 2001"
+           data-phone="0813-6802-7112"
+           data-gender="Perempuan"
+           data-hobby="Lari komunitas, traveling">
+        <div class="team-photo-wrap">
+          <img src="assets/images/team1.png" alt="Citra Maharani" onerror="this.src='assets/images/team1.png'" />
+          <div class="team-view-hint">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+            Lihat Biodata
+          </div>
+        </div>
+        <div class="team-card-info">
+          <h4>Citra Maharani</h4>
+          <span>Koordinator Komunitas</span>
+        </div>
+      </div>
+
+      <!-- 👇 TAMBAHKAN ANGGOTA BARU DI SINI -->
+
+    </div>
+  </section>
+
+  <!-- MODAL BIODATA -->
+  <div class="team-modal-overlay" id="team-modal-overlay">
+    <div class="team-modal">
+      <button class="team-modal-close" id="team-modal-close" aria-label="Tutup">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="5" y1="5" x2="19" y2="19" stroke-linecap="round"/>
+          <line x1="19" y1="5" x2="5" y2="19" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="team-modal-cover"></div>
+      <div class="team-modal-photo-wrap">
+        <img src="" alt="" id="team-modal-photo" />
+      </div>
+      <div class="team-modal-name-block">
+        <h3 id="team-modal-name"></h3>
+        <span class="team-modal-role-badge" id="team-modal-role"></span>
+      </div>
+      <div class="team-modal-body">
+        <div class="biodata-row">
+          <span class="biodata-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+          </span>
+          <div class="biodata-text">
+            <div class="biodata-label">Tanggal Lahir</div>
+            <div class="biodata-value" id="team-modal-birthdate"></div>
+          </div>
+        </div>
+        <div class="biodata-row">
+          <span class="biodata-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 1h2a2 2 0 0 1 2 1.72c.13.81.36 1.6.68 2.34a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <div class="biodata-text">
+            <div class="biodata-label">Nomor HP</div>
+            <div class="biodata-value" id="team-modal-phone"></div>
+          </div>
+        </div>
+        <div class="biodata-row">
+          <span class="biodata-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+          </span>
+          <div class="biodata-text">
+            <div class="biodata-label">Jenis Kelamin</div>
+            <div class="biodata-value" id="team-modal-gender"></div>
+          </div>
+        </div>
+        <div class="biodata-row">
+          <span class="biodata-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="var(--clay)"/></svg>
+          </span>
+          <div class="biodata-text">
+            <div class="biodata-label">Hobi</div>
+            <div class="biodata-value" id="team-modal-hobby"></div>
+          </div>
+        </div>
+        <div class="biodata-row">
+          <span class="biodata-icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="9" y1="8" x2="9" y2="8"/><line x1="9" y1="12" x2="9" y2="12"/><line x1="9" y1="16" x2="9" y2="16"/><line x1="15" y1="8" x2="15" y2="8"/><line x1="15" y1="12" x2="15" y2="12"/><line x1="15" y1="16" x2="15" y2="16"/></svg>
+          </span>
+          <div class="biodata-text">
+            <div class="biodata-label">Ditetapkan Sebagai</div>
+            <div class="biodata-value" id="team-modal-role-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Enjoy Nature. Semua hak dilindungi.</p>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">Strava</a>
+      <a href="#">YouTube</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Modal tim — baca data langsung dari atribut HTML, bukan dari JS array
+    (function () {
+      const overlay        = document.getElementById("team-modal-overlay");
+      const closeBtn       = document.getElementById("team-modal-close");
+      const modalPhoto     = document.getElementById("team-modal-photo");
+      const modalName      = document.getElementById("team-modal-name");
+      const modalRole      = document.getElementById("team-modal-role");
+      const modalBirthdate = document.getElementById("team-modal-birthdate");
+      const modalPhone     = document.getElementById("team-modal-phone");
+      const modalGender    = document.getElementById("team-modal-gender");
+      const modalHobby     = document.getElementById("team-modal-hobby");
+      const modalRoleText  = document.getElementById("team-modal-role-text");
+
+      document.querySelectorAll(".team-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          modalPhoto.src = card.dataset.photo;
+          modalPhoto.alt = card.dataset.name;
+          modalName.textContent      = card.dataset.name;
+          modalRole.textContent      = card.dataset.role;
+          modalBirthdate.textContent = card.dataset.birthdate;
+          modalPhone.textContent     = card.dataset.phone;
+          modalGender.textContent    = card.dataset.gender;
+          modalHobby.textContent     = card.dataset.hobby;
+          modalRoleText.textContent  = card.dataset.role;
+          overlay.classList.add("open");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      const close = () => {
+        overlay.classList.remove("open");
+        document.body.style.overflow = "";
+      };
+      closeBtn.addEventListener("click", close);
+      overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    })();
+  </script>
+</body>
+</html>

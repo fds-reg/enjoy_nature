@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Kami | Enjoy Nature</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .about-hero {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      font-size: 2rem;
+      color: var(--color-forest);
+      margin-bottom: 0.4rem;
+    }
+
+    .about-text .tagline {
+      font-size: 1rem;
+      color: var(--color-clay);
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .about-text p {
+      color: var(--color-muted);
+      font-size: 0.97rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-text .founded-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background-color: var(--color-forest);
+      color: var(--color-sand);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .founded-badge svg {
+      width: 16px;
+      height: 16px;
+      stroke: #f4b400;
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    .about-logo {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .about-logo img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 4px solid var(--color-border);
+      background-color: var(--color-cream);
+      box-shadow: 0 8px 28px rgba(31, 45, 31, 0.15);
+    }
+
+    .about-logo span {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--color-clay);
+      letter-spacing: 1px;
+    }
+
+    .about-pillars {
+      background-color: var(--color-forest);
+      padding: 3rem 1.5rem;
+    }
+
+    .about-pillars .section-title h2 {
+      color: var(--color-sand);
+    }
+
+    .about-pillars .section-title p {
+      color: var(--color-sand);
+      opacity: 0.75;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pillar-card {
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      color: var(--color-sand);
+      transition: transform var(--transition), background-color var(--transition);
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .pillar-card .pillar-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      background-color: rgba(244, 180, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pillar-card .pillar-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #f4b400;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .pillar-card h4 {
+      color: #f4b400;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-card p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      line-height: 1.7;
+    }
+
+    .about-divider {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .about-hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2rem;
+      }
+      .about-logo img {
+        width: 160px;
+        height: 160px;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo Jejak" />Enjoy Nature.</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="about.html" class="active">Tentang</a></li>
+          <li><a href="open-trip.html">Open Trip</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="gallery.html">Galeri</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="contact.html">Kontak</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Buka menu">&#9776;</button>
+    </div>
+  </header>
+
+  <section class="section" style="padding-bottom: 1rem;">
+    <div class="section-title fade-in">
+      <h2>Tentang Komunitas</h2>
+      <p>Awal mula perjalanan kami bersama alam</p>
+    </div>
+
+    <div class="about-hero fade-in">
+      <div class="about-text">
+        <h2>Enjoy Nature</h2>
+        <p class="tagline">Komunitas Pendaki & Pecinta Alam Terbuka</p>
+
+        <p>
+          <strong>Enjoy Nature</strong> lahir dari keresahan sederhana: terlalu banyak orang yang
+          ingin menjelajahi alam, tapi tidak tahu harus mulai dari mana. Komunitas ini berdiri
+          sebagai ruang bagi siapa saja — pemula maupun yang sudah berpengalaman — untuk
+          menikmati alam bersama, aman, dan bermakna.
+        </p>
+
+        <p>
+          Berawal dari sekelompok kecil teman yang rutin mendaki gunung-gunung lokal di Sumatera,
+          kami mulai membuka diri untuk siapapun yang ingin bergabung. Kami percaya bahwa alam
+          adalah guru terbaik &mdash; mengajarkan ketangguhan, kerendahan hati, dan rasa syukur yang
+          tidak bisa ditemukan di ruang kelas manapun.
+        </p>
+
+        <p>
+          Kini Enjoy Nature telah menggelar puluhan open trip dari Sabang hingga Flores,
+          mempertemukan ratusan jiwa yang punya satu kesamaan: cinta terhadap alam terbuka.
+        </p>
+
+        <div class="founded-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8 6 5 10 5 14a7 7 0 0 0 14 0c0-4-3-8-7-12z"/><path d="M12 8c-1.5 2-3 4-3 6a3 3 0 0 0 6 0c0-2-1.5-4-3-6z"/></svg>
+          Berdiri sejak 2021 &mdash; Sumatera Utara
+        </div>
+      </div>
+
+      <div class="about-logo">
+        <img src="assets/images/logo.png" alt="Logo Enjoy Nature" onerror="this.style.opacity='0.4'" />
+        <span>Enjoy Nature.</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="about-divider" />
+
+  <section class="about-pillars fade-in">
+    <div class="section-title" style="margin-bottom: 2rem;">
+      <h2>Nilai yang Kami Pegang</h2>
+      <p>Tiga pilar yang menjadi fondasi setiap langkah Enjoy Nature</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 20l6-11 4 7 2-3.5L20 20H3z"/></svg>
+        </div>
+        <h4>Jelajah Bersama</h4>
+        <p>Tidak ada yang tertinggal. Setiap anggota didampingi dari awal hingga puncak &mdash; tidak peduli pengalaman.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22c4-2 6-6 6-10a6 6 0 0 0-12 0c0 4 2 8 6 10z"/><path d="M12 12V6"/></svg>
+        </div>
+        <h4>Cinta Lingkungan</h4>
+        <p>Kami datang sebagai tamu di rumah alam. Setiap trip menerapkan prinsip <em>leave no trace</em> tanpa kompromi.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 19c0-3 2.5-5 6-5s6 2 6 5"/><path d="M10 19c0-3 2.5-5 6-5s6 2 6 5"/></svg>
+        </div>
+        <h4>Komunitas Nyata</h4>
+        <p>Bukan sekadar grup chat. Kami membangun persahabatan yang tumbuh dari keringat dan puncak yang ditaklukkan bersama.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Enjoy Nature. Semua hak dilindungi.</p>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">Strava</a>
+      <a href="#">YouTube</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
